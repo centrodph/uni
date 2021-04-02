@@ -7,3 +7,8 @@
 de pesos X y por pagar en efectivo le hacen el 10% de descuento ¿Cuánto
 abona?
 
+
+
+-  **mod_4_ej_3**  Convertir longitudes de millas a Km. y de pulgadas a cm., si:
+1 milla = 1.60935 Km.
+1 pulgada = 2.534 cm
