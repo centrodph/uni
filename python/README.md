@@ -15,3 +15,5 @@ abona?
 
 -  **mod_4_ej_4**  Hallar la longitud de la hipotenusa de un triángulo dada la medida de
 sus catetos
+
+-  **mod_4_ej_5**  Ingresar un número de tres cifras y mostrar el segundo dígito. 
