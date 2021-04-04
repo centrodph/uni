@@ -17,3 +17,15 @@ abona?
 sus catetos
 
 -  **mod_4_ej_5**  Ingresar un número de tres cifras y mostrar el segundo dígito. 
+
+-  **mod_4_ej_6**  Ingresar un número. Si es positivo, calcular su raíz cuadrada, si es
+negativo mostrar su cuadrado y si es cero mostrar “Error. Ha ingresado un valor
+nulo”.
+
+
+-  **mod_4_actividad_1**   Ingresar dos números y mostrar con el mensaje correspondiente:
+
+1. La suma.
+2. La diferencia.
+3. El producto.
+4. El resultado de elevar el primero al segundo.
