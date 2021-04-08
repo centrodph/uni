@@ -7,7 +7,7 @@ no válido” e ingresar un nuevo valor
 """)
 
 
-def showAngulo():
+def mostrarAngulo():
     angulo = int(input("Ingresar la medida del ángulo: "))
     if angulo == 90:
         print("El angulo es recto")
@@ -21,5 +21,5 @@ def showAngulo():
         print("El angulo es agudo")
     else:
         print("ángulo no válido")
-        showAngulo()
-showAngulo()
+        mostrarAngulo()
+mostrarAngulo()
