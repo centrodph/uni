@@ -33,3 +33,8 @@ nulo”.
 -  **mod_4_ej_7**  Ingresar las edades de dos personas. Si una de ellas es mayor de edad
 y la otra menor de edad, calcular y mostrar su promedio. En caso contrario
 mostrar las dos edades.
+
+
+-  **mod_4_ej_15**  Ingresar la medida de un ángulo y determinar si es agudo, obtuso, recto,
+nulo o llano. Si el valor ingresado es mayor a 180º mostrar la leyenda “ángulo
+no válido” e ingresar un nuevo valor
