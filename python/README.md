@@ -29,3 +29,7 @@ nulo”.
 2. La diferencia.
 3. El producto.
 4. El resultado de elevar el primero al segundo.
+
+-  **mod_4_ej_7**  Ingresar las edades de dos personas. Si una de ellas es mayor de edad
+y la otra menor de edad, calcular y mostrar su promedio. En caso contrario
+mostrar las dos edades.
