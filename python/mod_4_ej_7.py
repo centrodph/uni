@@ -10,10 +10,13 @@ edad_1 = int(input("Ingresar edad persona 1: "))
 edad_2 = int(input("Ingresar edad persona 2: "))
 edad_limite = 18
 
+
 def es_mayor_de_edad(edad: int):
-  return edad >= edad_limite
+    return edad >= edad_limite
+
 
 if es_mayor_de_edad(edad_1) or es_mayor_de_edad(edad_2):
-  print("El promedio es: %s" %((edad_1 + edad_2) / 2))
-else :
-  print("Las edades ingresadas son: - Edad 1: %s - Edad 2: %s" %(edad_1, edad_2))
+    print("El promedio es: %s" % ((edad_1 + edad_2) / 2))
+else:
+    print("Las edades ingresadas son: - Edad 1: %s - Edad 2: %s" %
+          (edad_1, edad_2))

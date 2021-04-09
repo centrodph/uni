@@ -11,8 +11,9 @@ numero = int(input("Ingresar un número: "))
 print()
 
 if numero > 0:
-  print("%s es positivo y su raiz cuadrada es: %s" %(numero, numero ** (1/2)))
-elif  numero < 0:
-  print("%s es negativo y su cuadrado es: %s" %(numero, numero ** 2))
-else :
-  print("Error. Ha ingresado un valor nulo")
+    print("%s es positivo y su raiz cuadrada es: %s" %
+          (numero, numero ** (1/2)))
+elif numero < 0:
+    print("%s es negativo y su cuadrado es: %s" % (numero, numero ** 2))
+else:
+    print("Error. Ha ingresado un valor nulo")

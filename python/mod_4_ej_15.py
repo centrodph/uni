@@ -22,5 +22,6 @@ def mostrarAngulo():
         print("El angulo es nulo")
     else:
         print("El angulo es agudo")
-    
+
+
 mostrarAngulo()
