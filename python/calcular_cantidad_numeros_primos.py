@@ -20,6 +20,8 @@ while num != 0:
             cantidad_divisores += 1
     if cantidad_divisores == 1:
         primos += 1
-    num = int(input("Ingresar un número: "))
-
+    num = int(input("Ingrese un número: "))
+    while num < 0:
+        num = int(input("Ingrese un número: "))
+        
 print('cantidad de numeros primos', primos)
