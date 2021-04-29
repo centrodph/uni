@@ -3,14 +3,13 @@ Se pide ingresar temperaturas hasta leer la temperatura cero.
 indicar la temperatura maxima y minima
 ''')
 
+max = 0
+min = 0
 num = int(input("ingresar temperatura:"))
-max = num
-min = num
-
 while num != 0:
-    if max < num:
+    if max == 0 or max < num:
         max = num
-    if min > num:
+    if min == 0 or min > num:
         min = num
     num = int(input("ingresar temperatura:"))
 
