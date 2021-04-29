@@ -18,10 +18,10 @@ while num != 0:
     for i in range(1, mitad, 1):
         if num % i == 0:
             cantidad_divisores += 1
-    if cantidad_divisores == 1:
+    if cantidad_divisores == 1 or cantidad_divisores == 0:
         primos += 1
     num = int(input("Ingrese un número: "))
     while num < 0:
         num = int(input("Ingrese un número: "))
-        
+
 print('cantidad de numeros primos', primos)
