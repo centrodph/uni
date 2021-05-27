@@ -2,7 +2,7 @@ print('''
 5! = 5*4*3*2*1
 3! =3*2*1
 0! = 1
-FATORIAL NO ESTA DEFINIDO PARA LOS NEGATIVOS
+FACTORIAL NO ESTA DEFINIDO PARA LOS NEGATIVOS
 Leer 5 número y determinar el factorial de cada uno de ellos
 ''')
 
