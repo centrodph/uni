@@ -7,10 +7,8 @@ Leer 5 número y determinar el factorial de cada uno de ellos
 ''')
 
 
-def calcular_factorial(num: int):    
+def calcular_factorial(num: int):
     fac = 1
-    if num == 0:
-        return 1
     for i in range(num, 1, -1):
         fac *= i
     return fac
