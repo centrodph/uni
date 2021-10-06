@@ -29,14 +29,15 @@ int main()
     nodo *inicial;
     inicial = (nodo *)malloc(sizeof(nodo));
     crear(inicial);
+    mostrar(inicial);
     return 0;
 }
 
 void crear(nodo *reg)
 {
     printf("Ingrese numero:");
-    scanf("%d", &reg->num);
-    if (reg->num == -1)
+    scanf("%d", &reg->cuenta);
+    if (reg->cuenta == -1)
     {
         reg->sig = NULL;
     }
@@ -46,12 +47,12 @@ void crear(nodo *reg)
         crear(reg->sig);
     }
 }
-void mostrar (nodo *reg)
+void mostrar(nodo *reg)
 {
-    if (reg->sig !=NULL)
-	{
-        printf ("%d\n",reg->num);
-        mostrar (reg->sig);
-	}
-	return;
+    if (reg->sig != NULL)
+    {
+        printf("%d\n", reg->cuenta);
+        mostrar(reg->sig);
+    }
+    return;
 }
