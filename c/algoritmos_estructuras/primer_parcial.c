@@ -126,7 +126,7 @@ void eliminar2(nodo *p, float prom)
     nodo *aux;
     while (p->sig != NULL && p->sig->sig != NULL)
     {
-        if (p->num > prom) // condicion de eliminacion
+        if (p->sig->num > prom) // condicion de eliminacion
         {
             aux = p->sig->sig;
             free(p->sig);
