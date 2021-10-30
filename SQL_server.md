@@ -1,3 +1,4 @@
+https://database.guide/how-to-install-sql-server-on-a-mac/
 
 
 sudo docker pull mcr.microsoft.com/mssql/server:2019-latest
