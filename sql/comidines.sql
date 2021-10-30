@@ -1,0 +1,16 @@
+-- like
+
+
+SELECT * FROM CLIENTE 
+    WHERE CLIENTE.NYAPE LIKE '%Garcia%';
+
+
+SELECT * FROM CLIENTE
+    WHERE  CLIENTE.LOCALIDAD = 'Morón';
+    
+SELECT * FROM CLIENTE
+    WHERE  CLIENTE.LOCALIDAD = 'Moron';
+
+-- comodin de un solo caracter
+SELECT * FROM CLIENTE
+    WHERE  CLIENTE.LOCALIDAD = 'Mor_n';        
