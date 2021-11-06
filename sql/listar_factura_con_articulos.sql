@@ -73,3 +73,30 @@ from FACTURA f
 SELECT count(distinct d.NROFACTURA )
 FROM DETALLE d
 
+--  Mostrar los valores entre el máximo y el mínimo de los articulos
+SELECT * FROM ARTICULO a 
+WHERE 
+    a.PRECIO < (SELECT MAX(b.PRECIO) FROM ARTICULO b) 
+AND 
+    a.PRECIO > (SELECT MIN(b.PRECIO) FROM ARTICULO b)
+
+
+-- group by
+SELECT a.RUBRO, max(a.PRECIO)
+FROM ARTICULO a
+GROUP BY a.RUBRO
+
+
+
+-- Se requiere el valor promedio de las canciones por Genero.
+-- SELECT g.Name, g.GenreId, avg(t.UnitPrice) promedio,
+-- FROM TRACK t  INNER JOIN GENRE g ON (g.GenreId = t.GenreId)
+-- GROUP BY g.Name, g.GenreId
+
+
+
+
+
+
+
+
