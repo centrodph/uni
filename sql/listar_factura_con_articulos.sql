@@ -33,3 +33,43 @@ from FACTURA f
 WHERE YEAR(f.FECHA) = 2021
 )
 ORDER BY c.NYAPE ASC
+
+
+
+-- not exist
+SELECT *
+FROM Cliente c1
+WHERE NOT EXISTS (SELECT *
+FROM Cliente c INNER JOIN Factura f ON (f.CLIENTE = c.NROCLI)
+WHERE YEAR(f.FECHA) = 2021
+    AND c1.NROCLI = c.NROCLI  -- CONDICIÓN DE JUNTA ENTRE QUERY Y SUBQUERY
+                    )
+
+
+
+-- full join
+
+SELECT *
+FROM FACTURA f FULL JOIN CLIENTE c ON (f.CLIENTE = c.NROCLI)
+
+
+
+-- funciones de agregacion o columna
+SELECT
+    max(a.PRECIO) Maximo,
+    min(a.PRECIO) Minimo,
+    avg(a.PRECIO) Promedio,
+    count(a.NROARTIC), -- no cuenta null
+    sum(a.PRECIO)
+FROM ARTICULO a
+
+-- cantidad de facturas
+SELECT count(f.NROFACTURA), count(f.CLIENTE)
+from FACTURA f
+SELECT f.CLIENTE
+from FACTURA f
+
+
+SELECT count(distinct d.NROFACTURA )
+FROM DETALLE d
+
