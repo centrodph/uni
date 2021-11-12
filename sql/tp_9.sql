@@ -27,37 +27,40 @@ FROM CLIENTE c
 WHERE c.NROCLI NOT IN (
 SELECT DISTINCT f.CLIENTE
 FROM FACTURA f
-WHERE f.NROFACTURA NOT IN (
+WHERE f.NROFACTURA IN (
     SELECT DISTINCT d.NROFACTURA
-FROM DETALLE d
-WHERE d.ARTICULO = 4030
-)
+    FROM DETALLE d
+    WHERE d.ARTICULO = 4030
+) and f.CLIENTE IS NOT NULL
 )
 
 -- Listar los datos de las facturas de este año en que se vendieron artículos del rubro clavos (descripción).
-SELECT DISTINCT *
-FROM FACTURA f
-    INNER JOIN DETALLE d ON f.NROFACTURA = d.NROFACTURA
-WHERE d.ARTICULO IN (
-SELECT a.NROARTIC
-from ARTICULO a
-WHERE a.RUBRO IN (
-SELECT r.COD_RUBRO
-FROM RUBRO r
-WHERE r.DESCRIPCION = 'Clavos'))
-
-
--- Listar los datos de las facturas de este año en que NO se vendieron artículos del rubro Herramientas eléctricas (descripción).
-SELECT DISTINCT *
+SELECT DISTINCT f.*
 FROM FACTURA f
     INNER JOIN DETALLE d ON f.NROFACTURA = d.NROFACTURA
 WHERE d.ARTICULO IN (
 SELECT a.NROARTIC
     from ARTICULO a
-    WHERE a.RUBRO NOT IN (
+    WHERE a.RUBRO IN (
 SELECT r.COD_RUBRO
     FROM RUBRO r
-    WHERE r.DESCRIPCION = 'Herramienta Electrica')) and YEAR(f.FECHA) = 2021
+    WHERE r.DESCRIPCION = 'Clavos'))
+    and YEAR(f.FECHA) = 2021
+
+-- Listar los datos de las facturas de este año en que NO se vendieron artículos del rubro Herramientas eléctricas (descripción).
+SELECT f.*
+FROM FACTURA f
+WHERE f.NROFACTURA IN (
+          Select d.nrofactura
+    FROM Detalle d
+    WHERE d.ARTICULO in (
+            SELECT a.NROARTIC
+    from ARTICULO a
+    WHERE a.RUBRO IN (
+                SELECT r.COD_RUBRO
+    FROM RUBRO r
+    WHERE r.DESCRIPCION = 'Clavos')))
+    and YEAR(f.FECHA) = 2021
 
 
 
