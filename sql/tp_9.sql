@@ -70,3 +70,65 @@ WHERE f.NROFACTURA IN (
 SELECT *
 FROM FACTURA f
     LEFT JOIN CLIENTE c on f.CLIENTE = c.NROCLI
+
+
+
+
+
+/**
+CLIENTE (Nrocli, Nyape, Domicilio, Localidad, Saldocli)
+
+FACTURA (Nrofactura, Cliente, Fecha, Total)
+
+DETALLE (Nrofactura, Renglón, Artículo, Cantidad, Preciouni)
+
+ARTICULO (Nroartic, Descripción, Rubro, Stock, Pto_reposicion, precio)
+
+RUBRO (Cod_rubro, Descripcion) 
+**/
+
+
+--  Mostrar los datos de los rubros cuyo precio promedio de sus artículos supere los $800 y el rubro tenga más de 2 artículos.
+
+SELECT count(a.NROARTIC) as cant, r.COD_RUBRO, r.DESCRIPCION, avg(a.PRECIO) as prom
+FROM ARTICULO a
+    INNER JOIN RUBRO r ON r.COD_RUBRO=a.RUBRO
+GROUP BY r.COD_RUBRO, r.DESCRIPCION
+HAVING avg(a.PRECIO) > 800 and count(a.NROARTIC) > 2
+
+
+SELECT *
+FROM ARTICULO a INNER JOIN RUBRO r ON r.COD_RUBRO=a.RUBRO
+
+
+
+
+
+
+--  Mostrar la cantidad de facturas de cada uno de los clientes que hayan comprado los artículos 4000 o 4010 y los datos de dichos clientes.
+SELECT count(f.NROFACTURA)
+FROM FACTURA f
+
+
+SELECT c.NROCLI, c.NYAPE, count(distinct ff.NROFACTURA)
+FROM FACTURA ff FULL JOIN CLIENTE c ON c.NROCLI = ff.CLIENTE
+    INNER JOIN DETALLE d on d.NROFACTURA = ff.NROFACTURA
+WHERE d.ARTICULO IN (4000, 4010)
+GROUP BY c.NROCLI, c.NYAPE
+
+
+--  Mostrar los datos de los clientes que compraron artículos del rubro 1 y que tienen más de 2 facturas, mostrar también dicha cantidad
+
+
+SELECT c.NROCLI, c.NYAPE, c.LOCALIDAD, count(distinct ff.NROFACTURA)
+FROM FACTURA ff FULL JOIN CLIENTE c ON c.NROCLI = ff.CLIENTE
+    INNER JOIN DETALLE d on d.NROFACTURA = ff.NROFACTURA
+    INNER JOIN ARTICULO a on d.ARTICULO = a.NROARTIC
+    INNER JOIN RUBRO r on r.COD_RUBRO = a.RUBRO
+WHERE r.COD_RUBRO = 1
+GROUP BY c.NROCLI, c.NYAPE, c.LOCALIDAD
+HAVING count(distinct ff.NROFACTURA) > 2
+
+
+
+-- Sumar 2 unidades a la cantidad comprada del artículo con código 4040 en la factura nro. 1005.
