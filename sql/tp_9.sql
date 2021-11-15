@@ -132,3 +132,17 @@ HAVING count(distinct ff.NROFACTURA) > 2
 
 
 -- Sumar 2 unidades a la cantidad comprada del artículo con código 4040 en la factura nro. 1005.
+UPDATE DETALLE 
+SET CANTIDAD = CANTIDAD + 2
+WHERE ARTICULO=4040 and NROFACTURA=1005
+
+
+-- Dar de baja los articulos que nunca se vendieron
+
+SELECT * FROM ARTICULO WHERE NROARTIC NOT IN(
+    SELECT NROARTIC FROM DETALLE 
+)
+
+DELETE ARTICULO WHERE NROARTIC NOT IN(
+    SELECT NROARTIC FROM DETALLE 
+)
