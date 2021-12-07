@@ -1,0 +1,140 @@
+- Pregunta 1
+Los vectores son estructuras dinámicas.
+Falso
+
+
+- Pregunta 2
+Para alojar memoria dinámicamente utilizamos la función malloc.
+Verdadero
+
+
+- Pregunta 3
+Los punteros nos permiten acceder a la memoria estática únicamente.
+Falso
+
+
+- Pregunta 4
+Al trabajar con archivos la función fopen no permite especificar diversos modos 
+de acceso al archivo. El acceso es siempre de un único modo
+Falso
+
+
+- Pregunta 5
+Propiedades de los árboles: La raiz nunca puede ser nodo hoja.
+Verdadero
+
+
+
+- Pregunta 6
+Justifique las respuestas que indico en las preguntas número 1 al 5:
+
+1- Cuando se define el vector se le asigna el tamaño del mismo y el tamaño no 
+puede variar.
+2- Malloc reserva un espacio de memoria y retorna un puntero al espacio reservado.
+3- Con los punteros podes referenciar tanto a variables o porciones de memoria 
+de estructuras estáticas con un entero o vector y a dinámicas como las generadas 
+por Malloc.
+4- Con fopen podes abrir el archivos de diversos modos como por ejemplo solo escritura
+con 'w', solo lectura con 'r' o lectura y escritura 'w+' entre otros.
+5- La raiz es el primer elemento de nivel 0 y una hoja se la considera al nodo 
+que no tiene nodos hijos, por lo tanto si tenemos un arbol de un solo nodo será
+raiz y hoja al mismo tiempo.
+
+
+
+
+Pregunta 7
+¿Cuales son los componentes necesarios para armar una función recursiva? Ejemplifique.
+- una funcion recursiva tiene 2 elementos. El primer el calculo o algoritmo principal
+que es el que se aplica a cada llamado. El segundo es una condición de corte para romper
+la recursividad y comenzar a desapilar.
+
+Ejemplo: Hallar el menor elemento
+
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+int calcular_sumatoria(int numero);
+int main()
+{
+
+    printf("\ncalcular_sumatoria es %d \n", calcular_sumatoria(4));
+    return 0;
+}
+
+int calcular_sumatoria(int numero)
+{
+    if (numero == 0)
+    {
+        return 0; // caso base
+    }
+    return numero + calcular_sumatoria(numero - 1); // algoritmo recursivo
+}
+```
+
+
+
+Pregunta 8
+Proponer una situación real donde se utilizar una pila y otra donde utilizar una cola.
+Ejemplo de Pila:
+```
+En SQL cuando tenemos consultas anidadas las mismas se resuelven como una PILA,
+la ultima sentencia en entrar a la consulta es la primera que se tiene que resolver
+para resolver la consulta.
+
+UPDATE empleado
+SET sueldo=sueldo * 1.2
+WHERE id_empleado IN (
+    SELECT id_empleado FROM EMPLEADO_PERFORMANCE WHERE performance > 80 and penalties = 0
+)
+
+El select es el tope de pila y se resuelve antes que el update. 
+LIFO. Last In First Out
+
+```
+
+Ejemplo de Cola:
+```
+En Javascript la resolucion de promesas se resuelve anidadas se resuelven como una
+cola en donde cada llamado se va a ejecutar luego de haber terminado con el 
+anterior.
+
+asyncCall1()
+    .then(() => {
+        console.log('Call 1 resulta')
+        asyncCall2().then(() => {
+            console.log('Call 2 resulta')
+            asyncCall3().then(() => {
+                console.log('Call 3 resulta)
+            })
+        })
+    })
+El primer llamado que ingresa a la "cola" es asyncCall1
+cuando este se completa "then" se ejecuta asyncCall2
+cuando este se completa "then" se ejecuta asyncCall3
+
+O sea que el primero que ingresa a la cola el el primero que sale.
+FIFO. First In First Out
+```
+
+
+
+Pregunta 9
+Para obtener la dirección de memoria donde se encuentra alojada una variable:
+&nombre_de_la_variable
+
+
+Pregunta 10
+Una multilista se define como:
+Una lista de listas.
+
+
+Pregunta 11
+Justifique las respuestas indicadas en las preguntas 9 y 10.
+9- & se ultiliza para pasar por referencia una variable esto quiere decir, que se
+para una referencia a la posicion de memoria de la variable
+10-multilista es una estructura bidimensional o sea un lista que tiene otros listas
+dentro.
+
+
