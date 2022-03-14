@@ -27,3 +27,4 @@
 - para guardar las versiones `pip freeze > requirements.txt`
 
 
+- desactivar el entorno virtual `deactivate`
