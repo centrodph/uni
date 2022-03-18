@@ -42,6 +42,10 @@ public class Auto {
         return color;
     }
 
+    /**
+     * Cambiar la velocidad
+     * @param nuevaVelocidad nueva velocity
+     */
     public void modificarVelocidad(int nuevaVelocidad) {
         aumentarRegimen();
         velocidadActual = nuevaVelocidad;
