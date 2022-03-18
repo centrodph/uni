@@ -6,5 +6,13 @@ public class Test {
         miAuto.establecerMoldelo("FOCUS");
         miAuto.acelerar();
         System.out.println(miAuto.obtenerVelocidad());
+
+
+        Auto x = miAuto;
+
+        System.out.println(miAuto.obtenerMarca());
+        x.establecerMarca("cambiar");
+        System.out.println(miAuto.obtenerMarca());
+
     }
 }
