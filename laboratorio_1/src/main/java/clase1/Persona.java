@@ -1,3 +1,5 @@
+package clase1;
+
 import java.util.Date;
 
 public class Persona {

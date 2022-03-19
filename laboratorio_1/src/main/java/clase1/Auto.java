@@ -1,8 +1,10 @@
+package clase1;
+
 public class Auto {
-    String marca;
-    String modelo;
-    String color;
-    int velocidadActual = 0;
+    private String marca;
+    private String modelo;
+    private String color;
+    private int velocidadActual = 0;
 
     private int anioFabricacion;
 
