@@ -4,6 +4,9 @@ public class Auto {
     String color;
     int velocidadActual = 0;
 
+    private int anioFabricacion;
+
+
     public void acelerar() {
         aumentarRegimen();
         velocidadActual = velocidadActual + 10;
@@ -53,6 +56,46 @@ public class Auto {
 
     public int obtenerVelocidad() {
         return velocidadActual;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getVelocidadActual() {
+        return velocidadActual;
+    }
+
+    public void setVelocidadActual(int velocidadActual) {
+        this.velocidadActual = velocidadActual;
+    }
+
+    public int getAnioFabricacion() {
+        return anioFabricacion;
+    }
+
+    public void setAnioFabricacion(int anioFabricacion) {
+        this.anioFabricacion = anioFabricacion;
     }
 }
 
