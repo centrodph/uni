@@ -6,6 +6,7 @@ public class Auto {
     private String modelo;
     private int anioFabricacion;
     private int velocidadActual;
+    private Motor motor;
 
     public String getColor() {
         return color;
@@ -45,5 +46,18 @@ public class Auto {
 
     public void setVelocidadActual(int velocidadActual) {
         this.velocidadActual = velocidadActual;
+    }
+
+    public Motor getMotor() {
+        return motor;
+    }
+
+    public void acelerar() {
+        this.motor.setRpmActuales(this.motor.getRpmActuales() + 1000);
+        System.out.println("Acelerando");
+    }
+
+    public void setMotor(Motor motor) {
+        this.motor = motor;
     }
 }
