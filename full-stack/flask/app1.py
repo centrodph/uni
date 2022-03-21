@@ -49,7 +49,7 @@ def list_people():
 
 
 '''
-curl http://localhost:5000/people/ -i -X POST -d "{"data1": "data1", "data2":"valor2"}" -H "Content-Type: application/json"
+curl http://localhost:5000/people/ -i -X POST -d '{"data1": "data1", "data2":"valor2"}' -H "Content-Type: application/json"
 curl http://localhost:5000/people/ -i -X POST -F campo1=valor1 -F campo2=valor2
 '''
 @app.route('/people/', methods=['POST'])
@@ -57,6 +57,7 @@ def add_person():
     """post params"""
     print('DATA', request.data)
     print('FORM', request.form)
+    print('GET JSON', request.get_json())
     params = ''
     for key, value in request.args.items():
         params += f'{key}={value} \n'
