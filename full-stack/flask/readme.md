@@ -49,3 +49,12 @@ Los parametros son:
 param1=123 
 param2=test 
 ```
+
+
+## flask estructura de ejemplo
+
+ - app/
+
+## ejecutar env
+
+`$(cat .env)`

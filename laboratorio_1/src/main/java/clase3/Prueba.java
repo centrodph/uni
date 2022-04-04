@@ -1,4 +1,4 @@
-package clase2;
+package clase3;
 
 public class Prueba {
     public static void main(String[] args){
