@@ -82,4 +82,10 @@ FLASK_ENV: development
 ```
 
 
-## iniciar DB flask db init
+## iniciar DB 
+
+`flask db init`
+
+## migrar DB
+
+`flask db migrate`
