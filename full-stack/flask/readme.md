@@ -60,7 +60,7 @@ param2=test
 `$(cat .env)`
 
 
-## correr 
+## correr flask run
 
 `flask run`
 
@@ -80,3 +80,6 @@ FLASK_ENV: development
 BASE_DIR: /Users/gerardoperrucci/Sites/UniversityMaterials/universidad_code/full-stack/flask/app
 FLASK_ENV: development
 ```
+
+
+## iniciar DB flask db init
