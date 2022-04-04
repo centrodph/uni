@@ -7,3 +7,4 @@ class Event(db.Model):
     description = db.Column(db.String(100), nullable=False, unique=True)
     start_date = db.Column(db.Date, nullable=False)
     start_time = db.Column(db.Time, nullable=False)
+    location = db.Column(db.String(120), nullable=False)

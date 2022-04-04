@@ -89,3 +89,7 @@ FLASK_ENV: development
 ## migrar DB
 
 `flask db migrate`
+
+## aplicar cambios a  DB
+
+`flask db upgrade`
