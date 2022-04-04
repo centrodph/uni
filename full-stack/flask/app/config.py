@@ -8,6 +8,7 @@ print(f"BASE_DIR: {BASE_DIR}")
 class Config:
     DEBUG = False
     RESTX_MASK_SWAGGER = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class DevelopmentConfig(Config):

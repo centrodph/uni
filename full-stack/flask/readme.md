@@ -58,3 +58,25 @@ param2=test
 ## ejecutar env
 
 `$(cat .env)`
+
+
+## correr 
+
+`flask run`
+
+```
+ app % flask run    
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+ * Serving Flask app 'backend' (lazy loading)
+ * Environment: development
+ * Debug mode: on
+BASE_DIR: /Users/gerardoperrucci/Sites/UniversityMaterials/universidad_code/full-stack/flask/app
+FLASK_ENV: development
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Tip: There are .env or .flaskenv files present. Do "pip install python-dotenv" to use them.
+ * Debugger is active!
+ * Debugger PIN: 264-891-531
+BASE_DIR: /Users/gerardoperrucci/Sites/UniversityMaterials/universidad_code/full-stack/flask/app
+FLASK_ENV: development
+```
