@@ -1,3 +1,4 @@
+from pyexpat import model
 from flask_restx import (
     Resource,
     reqparse,
@@ -34,6 +35,24 @@ parser.add_argument(
 @event_api.route('/')
 class EventList(Resource):
 
+    @event_api.response(
+        400,
+        description='Bad request',
+        model=error_response_dto,
+        envelope='error'
+    )
+    @event_api.response(
+        200,
+        description='List of events',
+        model=event_list_dto,
+        envelope='data'
+    )
+    @event_api.response(
+        500,
+        description='Server error',
+        model=event_list_dto,
+        envelope='data'
+    )
     @event_api.expect(parser)
     def get(self):
         """
