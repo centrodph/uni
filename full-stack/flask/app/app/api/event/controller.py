@@ -1,4 +1,4 @@
-from pyexpat import model
+# import pdb
 from flask_restx import (
     Resource,
     reqparse,
@@ -66,6 +66,10 @@ class EventList(Resource):
 
         except Exception as e:
             abort(400, message=str(e))
+        
+        
+        # pdb.set_trace() # breakpoint
+
         events = EventService.get_events()
         print(events)
         return jsonify({
