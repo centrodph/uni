@@ -14,5 +14,18 @@ event = api.model('Event', {
 
     'description': fields.String(required=True, description='Description of the event'),
     'start_date': fields.Date(required=True, description='Start date of the event'),
-    'start_time': CustomFieldTime(required=True, description='Start time 24 hours format', example="10:11:39"),
+    'start_time': CustomFieldTime(required=True, description='Start time 24 hours format', example="10:11"),
 })
+
+
+event_list = api.model('EventList', {
+    'events': fields.List(fields.Nested(event), required=True)
+})
+
+error_response = api.model(
+    'ErrorResponse',
+    {
+        'code': fields.String,
+        'message': fields.String
+    }
+)

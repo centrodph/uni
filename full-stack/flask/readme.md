@@ -93,3 +93,9 @@ FLASK_ENV: development
 ## aplicar cambios a  DB
 
 `flask db upgrade`
+
+
+
+## SHELL
+
+`flask shell`
