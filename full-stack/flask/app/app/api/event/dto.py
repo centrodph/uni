@@ -1,5 +1,7 @@
 from importlib.resources import path
 from flask_restx import Namespace, fields
+from app.common import CustomFieldTime
+
 
 api = Namespace('Event',
                 path="/event",
