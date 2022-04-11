@@ -17,5 +17,8 @@ def create_app(config_name: str):
     ma.init_app(app)
 
     from app.models.event import Event
+    from app.api import api_bp
+
+    app.register_blueprint(api_bp)
 
     return app
