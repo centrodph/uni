@@ -6,3 +6,6 @@ class Attendee(models.Model):
     last_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=10, default='M')
     birth_date = models.DateField()
+
+    def __str__(self) -> str:
+        return f"{self.first_name}, {self.last_name}"

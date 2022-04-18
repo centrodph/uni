@@ -39,3 +39,13 @@
 
 `python manage.py makemigrations`
 
+`python manage.py migrate`
+
+#### start
+
+`python manage.py runserver`
+
+
+#### create super user
+
+`python manage.py createsuperuser`
