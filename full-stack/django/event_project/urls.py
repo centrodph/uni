@@ -20,7 +20,7 @@ from rest_framework import routers
 from attendee.urls import router as attendee_router
 
 router = routers.DefaultRouter()
-router.registry.extend(attendee_router)
+router.registry.extend(attendee_router.registry)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -59,3 +59,11 @@
 #### Shell
 
 `python manage.py shell`
+
+
+
+##### example call
+
+```
+ curl http://127.0.0.1:8000/api/attendees/
+```
