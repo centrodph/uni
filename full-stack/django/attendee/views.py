@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from attendee.models import (
+    Attendee,
+    AttendeeSerializer
+)
+
+class AttendeeViewSet(viewsets.ModelViewSet):
+    """Attendee resource"""
+    queryset = Attendee.objects.all()
+    serializer_class = AttendeeSerializer
