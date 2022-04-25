@@ -1,8 +1,6 @@
-from rest_framework import serializers
 from django.db import models
 
 from event.models.event import Event
-
 # Create your models here.
 class Attendee(models.Model):
     code = models.CharField(max_length=10, unique=True)
@@ -24,9 +22,3 @@ class Attendee(models.Model):
     class Meta:
         verbose_name = 'Asistente'
         verbose_name_plural = 'Asistentes'
-
-class AttendeeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Attendee
-        fields = '__all__'
-

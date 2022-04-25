@@ -22,9 +22,11 @@ from drf_yasg import openapi
 
 from . import settings
 from attendee.urls import router as attendee_router
+from event.urls import router as event_router
 
 router = routers.DefaultRouter()
 router.registry.extend(attendee_router.registry)
+router.registry.extend(event_router.registry)
 
 schema_view = get_schema_view(
     openapi.Info(
