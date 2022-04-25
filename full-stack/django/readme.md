@@ -49,3 +49,13 @@
 #### create super user
 
 `python manage.py createsuperuser`
+
+
+#### Check model
+
+`python manage.py check`
+
+
+#### Shell
+
+`python manage.py shell`
