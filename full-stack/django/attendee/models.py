@@ -1,5 +1,4 @@
-from tabnanny import verbose
-from unicodedata import name
+from rest_framework import serializers
 from django.db import models
 
 from event.models.event import Event
@@ -24,4 +23,10 @@ class Attendee(models.Model):
 
     class Meta:
         verbose_name = 'Asistente'
-        verbose_name_plural = 'Asistentes'    
+        verbose_name_plural = 'Asistentes'
+
+class AttendeeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Attendee
+        fields = '__all__'
+
