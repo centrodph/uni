@@ -72,3 +72,39 @@ from dual
 
 select rpad('hola', 10, '*')
 from dual
+
+
+select round(254.15123123, 2)
+from dual
+
+select trunc(254.12312)
+from dual
+
+SELECT sysdate
+from 
+
+select user
+from dual
+
+
+select first_name, last_name, salary, nvl(commission, 0), salary + nvl(commission, 0) as salary_total
+from employee
+
+
+
+
+select 
+    to_char(250.25), 
+    to_char(sysdate, 'dd-mm-yyyy hh24:mi:ss'),
+    to_char(sysdate, 'yy')
+from dual
+
+
+
+select to_number('855,25')
+from dual
+
+
+
+select to_date('01/01/2020', 'dd/mm/yyyy')
+from dual
