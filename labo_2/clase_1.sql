@@ -108,3 +108,37 @@ from dual
 
 select to_date('01/01/2020', 'dd/mm/yyyy')
 from dual
+
+
+select department_id, name, decode(location_id, 122, 'loc 1222',
+                                            124, 'Mar del plata',
+                                            123, 'dsds',
+                                            'Otra localidad')
+from department d
+
+
+
+
+
+-- funciones de GROUP
+select 
+            department_id, 
+            count(employee_id), 
+            round(avg(salary), 2),
+            max(salary),
+            min(salary)
+from employee
+group by department_id
+
+
+
+select 
+            department_id, 
+            count(employee_id), 
+            round(avg(salary), 2),
+            max(salary),
+            min(salary)
+from employee
+group by department_id
+having count(employee_id) > 3
+
