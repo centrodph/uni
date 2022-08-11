@@ -137,8 +137,35 @@ select
             count(employee_id), 
             round(avg(salary), 2),
             max(salary),
-            min(salary)
+            min(salary),
+            sum(salary)
 from employee
 group by department_id
 having count(employee_id) > 3
 
+
+-- OUTER JOIN
+
+select j.first_name, j.last_name, e.first_name, e.last_name
+from 
+    employee e, 
+    employee j
+where e.manager_id = j.employee_id (+)
+order by 1,2,3
+
+select * from employee where manager_id is null
+
+
+
+select d.department_id, d.name, count(employee_id)
+from department d,
+    employee e
+where e.department_id (+) = d.department_id
+group by d.department_id, d.name
+
+
+
+insert into department 
+(department_id, name, location_id)
+values
+(55, 'prueba', 122);
