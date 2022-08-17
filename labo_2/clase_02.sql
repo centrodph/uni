@@ -60,6 +60,7 @@ declare
     v_fecha      date;
     v_encontre   boolean;
     v_precio     number(6,2); -- 9999,99 4 enteros y 2 decimales
+    c_iva constant number(3,2) := 0.21;
 begin 
     v_nombre := 'Ale';
     dbms_output.put_line('Nombre: '||v_nombre);

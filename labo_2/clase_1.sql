@@ -1,171 +1,77 @@
-SELECT first_name, last_name, name 
-FROM 
-    employee e,
-    department d
-WHERE 
-    d.department_id = e.department_id
-    AND e.department_id = 10
-ORDER BY first_name
+-- ej 9.	
+-- Mostrar el nombre de los empleados, su comisión y 
+-- un cartel que diga ¨Sin comisión¨ para aquellos empleados que tienen su comisión en nulo.
+select first_name, decode(commission, null, 'Sin comision', commission)
+from employee;
 
 
-SELECT DISTINCT(name) FROM department
-
-/*
-Test
-*/
-
--- test
+select first_name, hire_date 
+from employee 
+where EXTRACT(YEAR FROM TO_DATE(hire_date, 'dd/mm/yy')) = 2006;
 
 
-SELECT DISTINCT manager_id , salary
-from employee
-order by manager_id, salary
+select first_name, hire_date 
+from employee 
+where hire_date between to_date('01/01/06', 'dd/mm/yy') and to_date('31/12/06', 'dd/mm/yy');
 
+select * from department;
 
-
-
-
-
-SELECT * 
-from  product
-where 
-        -- product_id between 100860 and 100870
-        -- description  like 'A%'
-        upper(description) like upper('_e%')
-        -- product_id = 100860
-        --  product_id > 100860
-
-
-
-
--- concatenar
-select first_name ||' '|| last_name ||' '|| salary
-from employee
-
-
--- valores nulos
-SELECT * 
-FROM employee
-where commission is not null
-
--- variables de sustitucion
-select * 
-from employee
-where department_id = :depto
-
-
--- funciones de fila simple
-select 
-    initcap(first_name) 
-from employee
-
-select 
-    substr(description, 1, 5)
-from product
-
-select trim('                         hola mundo   ')
-from dual
-
-
-select lpad('hola', 10, '-')
-from dual
-
-select rpad('hola', 10, '*')
-from dual
-
-
-select round(254.15123123, 2)
-from dual
-
-select trunc(254.12312)
-from dual
-
-SELECT sysdate
-from 
-
-select user
-from dual
-
-
-select first_name, last_name, salary, nvl(commission, 0), salary + nvl(commission, 0) as salary_total
-from employee
-
-
-
-
-select 
-    to_char(250.25), 
-    to_char(sysdate, 'dd-mm-yyyy hh24:mi:ss'),
-    to_char(sysdate, 'yy')
-from dual
-
-
-
-select to_number('855,25')
-from dual
-
-
-
-select to_date('01/01/2020', 'dd/mm/yyyy')
-from dual
-
-
-select department_id, name, decode(location_id, 122, 'loc 1222',
-                                            124, 'Mar del plata',
-                                            123, 'dsds',
-                                            'Otra localidad')
-from department d
-
-
-
-
-
--- funciones de GROUP
-select 
-            department_id, 
-            count(employee_id), 
-            round(avg(salary), 2),
-            max(salary),
-            min(salary)
-from employee
-group by department_id
-
-
-
-select 
-            department_id, 
-            count(employee_id), 
-            round(avg(salary), 2),
-            max(salary),
-            min(salary),
-            sum(salary)
-from employee
-group by department_id
-having count(employee_id) > 3
-
-
--- OUTER JOIN
-
-select j.first_name, j.last_name, e.first_name, e.last_name
-from 
-    employee e, 
-    employee j
-where e.manager_id = j.employee_id (+)
-order by 1,2,3
-
-select * from employee where manager_id is null
-
-
-
-select d.department_id, d.name, count(employee_id)
-from department d,
-    employee e
-where e.department_id (+) = d.department_id
-group by d.department_id, d.name
-
-
-
-insert into department 
+insert into department
 (department_id, name, location_id)
 values
-(55, 'prueba', 122);
+(33, 'Ptest', 122);
+
+delete from department 
+where department_id = 33;
+
+
+update department
+set name = 'actualizado'
+where department_id = 20;
+
+
+
+savepoint 1;
+commit;
+rollback;
+
+
+
+-- bloques anonimos
+declare
+    /*
+    declaraciones
+    */
+begin
+    /*
+    ejecucion
+    */
+    null;
+    exception
+    /*
+    manejo de excepciones
+    */
+end;
+
+
+declare
+    v_nombre     varchar2(15);
+    v_edad       number(2);
+    v_fecha      date := sysdate;
+    v_encontre   boolean := true;
+    v_precio     number(6,2); -- 9999,99 4 enteros y 2 decimales
+    c_iva constant number(3,2) := 0.21;
+    v_nom         employee.first_name%type; -- tomo el tipo de dato de la columna
+begin 
+
+    -- v_edad := :ingrese_su_edad;
+    -- dbms_output.put_line('edad: '||v_edad);
+
+    v_precio := 1000;
+    dbms_output.put_line('precio: '||v_precio||' + '||+v_precio*c_iva);
+
+    v_nombre := 'Ale';
+    dbms_output.put_line('Nombre: '||v_nombre);
+
+    dbms_output.put_line('Fecha '|| v_fecha);
+end;
