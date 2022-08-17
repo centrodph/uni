@@ -52,3 +52,15 @@ begin
     manejo de excepciones
     */
 end;
+
+
+declare
+    v_nombre     varchar2(15);
+    v_edad       number(2);
+    v_fecha      date;
+    v_encontre   boolean;
+    v_precio     number(6,2); -- 9999,99 4 enteros y 2 decimales
+begin 
+    v_nombre := 'Ale';
+    dbms_output.put_line('Nombre: '||v_nombre);
+end;
