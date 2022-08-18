@@ -131,3 +131,9 @@ begin
 
     dbms_output.put_line(v_nom);
 end;
+
+
+select e.first_name, s.grade_id from employee e
+inner join salary_grade  s ON s.lower_bound <= e.salary and e.salary <= s.upper_bound 
+
+
