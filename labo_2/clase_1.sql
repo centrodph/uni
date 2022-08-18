@@ -62,6 +62,7 @@ declare
     v_precio     number(6,2); -- 9999,99 4 enteros y 2 decimales
     c_iva constant number(3,2) := 0.21;
     v_nom         employee.first_name%type; -- tomo el tipo de dato de la columna
+    vr_emple      employee%rowtype; -- tomo tipo de dato del registro
 begin 
 
     -- v_edad := :ingrese_su_edad;
@@ -74,4 +75,11 @@ begin
     dbms_output.put_line('Nombre: '||v_nombre);
 
     dbms_output.put_line('Fecha '|| v_fecha);
+
+
+
+    vr_emple.first_name := 'Pepe';
+    vr_emple.salary := 1500;
+    dbms_output.put_line(vr_emple.first_name||' '||vr_emple.salary);
+
 end;
