@@ -54,14 +54,67 @@ begin
 end;
 
 
+-- bloques anonimos
 declare
-    v_nombre     varchar2(15);
+    /*
+    declaraciones
+    */
+begin
+    /*
+    ejecucion
+    */
+    null;
+    exception
+    /*
+    manejo de excepciones
+    */
+end;
+
+
+
+
+
+
+declare
+    v_nombre     varchar2(15) default 'nombre default';
     v_edad       number(2);
-    v_fecha      date;
-    v_encontre   boolean;
+    v_fecha      date := sysdate;
+    v_encontre   boolean := true;
     v_precio     number(6,2); -- 9999,99 4 enteros y 2 decimales
     c_iva constant number(3,2) := 0.21;
+    v_nom         employee.first_name%type; -- tomo el tipo de dato de la columna
+    vr_emple      employee%rowtype; -- tomo tipo de dato del registro
 begin 
+
+    -- v_edad := :ingrese_su_edad;
+    -- dbms_output.put_line('edad: '||v_edad);
+
+    v_precio := 1000;
+    dbms_output.put_line('precio: '||v_precio||' + '||+v_precio*c_iva);
+
     v_nombre := 'Ale';
     dbms_output.put_line('Nombre: '||v_nombre);
+
+    dbms_output.put_line('Fecha '|| v_fecha);
+
+
+
+    vr_emple.first_name := 'Pepe';
+    vr_emple.salary := 1500;
+    dbms_output.put_line(vr_emple.first_name||' '||vr_emple.salary);
+
+end;
+
+
+
+--- crear bloque anonimo ingreasar por vairable de sustitucion in id de departamento, nombre
+declare
+    v_department department%rowtype;
+begin
+    v_department.department_id := :ingrese_id_departamento;
+    v_department.name := :ingrese_nombre_departamento;
+    insert into department
+    (department_id, name)
+    values
+    (v_department.department_id, v_department.name);
 end;
