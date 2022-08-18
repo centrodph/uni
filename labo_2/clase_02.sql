@@ -118,3 +118,16 @@ begin
     values
     (v_department.department_id, v_department.name);
 end;
+
+
+
+declare
+    v_nom varchar2(14);
+begin
+    select name
+    into v_nom
+    from department
+    where department_id =10;
+
+    dbms_output.put_line(v_nom);
+end;
