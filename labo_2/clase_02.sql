@@ -1,73 +1,24 @@
--- ej 9.	
--- Mostrar el nombre de los empleados, su comisión y 
--- un cartel que diga ¨Sin comisión¨ para aquellos empleados que tienen su comisión en nulo.
-select first_name, decode(commission, null, 'Sin comision', commission)
-from employee;
-
-
-select first_name, hire_date 
-from employee 
-where EXTRACT(YEAR FROM TO_DATE(hire_date, 'dd/mm/yy')) = 2006;
-
-
-select first_name, hire_date 
-from employee 
-where hire_date between to_date('01/01/06', 'dd/mm/yy') and to_date('31/12/06', 'dd/mm/yy');
-
-select * from department;
-
-insert into department
-(department_id, name, location_id)
-values
-(33, 'Ptest', 122);
-
-delete from department 
-where department_id = 33;
-
-
-update department
-set name = 'actualizado'
-where department_id = 20;
+-- select into es solo para 1 fila
+-- si es mas de 1 o ninguna genera una excepcion
 
 
 
-savepoint 1;
-commit;
-rollback;
 
-
-
--- bloques anonimos
 declare
-    /*
-    declaraciones
-    */
+    v_nombre employee.first_name%type;
+    v_salary employee.salary%type;
 begin
-    /*
-    ejecucion
-    */
-    null;
-    exception
-    /*
-    manejo de excepciones
-    */
-end;
+    select 
+            first_name, salary
+        into 
+            v_nombre, v_salary
+        from employee
+        where employee_id = 736;
 
-
--- bloques anonimos
-declare
-    /*
-    declaraciones
-    */
-begin
-    /*
-    ejecucion
-    */
-    null;
-    exception
-    /*
-    manejo de excepciones
-    */
+    dbms_output.put_line('nombre: '||v_nombre||' salario: '||v_salary);
+exception
+    when no_data_found then
+        dbms_output.put_line('No existe el empleado');
 end;
 
 
@@ -76,64 +27,110 @@ end;
 
 
 declare
-    v_nombre     varchar2(15) default 'nombre default';
-    v_edad       number(2);
-    v_fecha      date := sysdate;
-    v_encontre   boolean := true;
-    v_precio     number(6,2); -- 9999,99 4 enteros y 2 decimales
-    c_iva constant number(3,2) := 0.21;
-    v_nom         employee.first_name%type; -- tomo el tipo de dato de la columna
-    vr_emple      employee%rowtype; -- tomo tipo de dato del registro
+    v_nombre employee.first_name%type;
+    v_salary employee.salary%type;
+begin
+    select 
+            first_name, salary
+        into 
+            v_nombre, v_salary
+        from employee
+        where department_id = 10;
+
+    dbms_output.put_line('nombre: '||v_nombre||' salario: '||v_salary);
+exception
+    when no_data_found then
+        dbms_output.put_line('No existe el empleado');
+    when too_many_rows then
+        dbms_output.put_line('Existe  mas de un empleado');
+end;
+
+
+declare
+    v_nombre employee.first_name%type;
+    v_salary employee.salary%type;
 begin 
+    begin
+        select 
+                first_name, salary
+            into 
+                v_nombre, v_salary
+            from employee
+            where employee_id = 736;
+    exception
+        when no_data_found then
+        dbms_output.put_line('Exception !');
+    end;
 
-    -- v_edad := :ingrese_su_edad;
-    -- dbms_output.put_line('edad: '||v_edad);
-
-    v_precio := 1000;
-    dbms_output.put_line('precio: '||v_precio||' + '||+v_precio*c_iva);
-
-    v_nombre := 'Ale';
-    dbms_output.put_line('Nombre: '||v_nombre);
-
-    dbms_output.put_line('Fecha '|| v_fecha);
-
-
-
-    vr_emple.first_name := 'Pepe';
-    vr_emple.salary := 1500;
-    dbms_output.put_line(vr_emple.first_name||' '||vr_emple.salary);
-
+    dbms_output.put_line('fin programa');
 end;
 
 
+-- CONDICIONALES
+IF <condicion> then
+    xxxx;
+end if;
 
---- crear bloque anonimo ingreasar por vairable de sustitucion in id de departamento, nombre
+IF <condicion> then
+    xxxx;
+else
+    yyyyy;    
+end if;
+
+
+IF <condicion> then
+    xxxx;
+elsif <condicion 2> then
+    yyyyy;
+elsif <condicion 3> then
+    adasda;    
+end if;
+
+
+
+
 declare
-    v_department department%rowtype;
+    v_edad number(2);
 begin
-    v_department.department_id := :ingrese_id_departamento;
-    v_department.name := :ingrese_nombre_departamento;
-    insert into department
-    (department_id, name)
-    values
-    (v_department.department_id, v_department.name);
+    v_edad := 20;
+
+    if v_edad < 18 then
+        dbms_output.put_line('Secundario');
+    else
+        dbms_output.put_line('Universidad');
+    end if;
 end;
 
 
 
-declare
-    v_nom varchar2(14);
-begin
-    select name
-    into v_nom
-    from department
-    where department_id =10;
 
-    dbms_output.put_line(v_nom);
+-- LOOPS
+
+loop
+    xxxx;
+    exit when <condition>
+end loop;
+
+while <condicion> loop
+    xxx;
+end loop;
+
+
+for i in [reverse]1..5 loop
+    xxx
+    xxx
+end loop;    
+
+
+
+begin
+    for i in 1..5 loop
+        dbms_output.put_line('posicion:='||i);
+    end loop;
 end;
 
-
-select e.first_name, s.grade_id from employee e
-inner join salary_grade  s ON s.lower_bound <= e.salary and e.salary <= s.upper_bound 
-
-
+begin
+    for i in reverse 1..5 loop
+        dbms_output.put_line('posicion:='||i);
+    end loop;
+end;

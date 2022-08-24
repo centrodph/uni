@@ -64,3 +64,51 @@ begin
 
     dbms_output.put_line('fin programa');
 end;
+
+
+-- CONDICIONALES
+IF <condicion> then
+    xxxx;
+end if;
+
+IF <condicion> then
+    xxxx;
+else
+    yyyyy;    
+end if;
+
+
+IF <condicion> then
+    xxxx;
+elsif <condicion 2> then
+    yyyyy;
+elsif <condicion 3> then
+    adasda;    
+end if;
+
+
+
+
+declare
+    v_edad number(2);
+begin
+    v_edad := 20;
+
+    if v_edad < 18 then
+        dbms_output.put_line('Secundario');
+    else
+        dbms_output.put_line('Universidad');
+    end if;
+end;
+
+
+
+
+
+
+
+
+
+
+
+
