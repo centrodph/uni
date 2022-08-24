@@ -13,7 +13,10 @@ begin
         into 
             v_nombre, v_salary
         from employee
-        where employee_id=7369;
+        where employee_id = 736;
 
     dbms_output.put_line('nombre: '||v_nombre||' salario: '||v_salary);
+exception
+    when no_data_found then
+        dbms_output.put_line('No existe el empleado');
 end;
