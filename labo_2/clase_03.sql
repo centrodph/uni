@@ -168,6 +168,16 @@ atributo
         tipo de dato que tiene el registro de tabla
 
 
+
+
+
+
+
+
+
+
+
+
 declare
     type tr_emp is record(
         emp_id employee.employee_id%type,
@@ -187,7 +197,6 @@ begin
     t_emp(2).emp_id := 12;
     t_emp(2).nombre := 'PEPE';
 
-
     for i in 1..2 loop
         dbms_output.put_line('id: '||t_emp(i).emp_id);
         dbms_output.put_line('nombre: '||t_emp(i).nombre);
@@ -200,8 +209,63 @@ end;
 
 
 
+---- atributos
 
+/*
 
+ej
+
+2
+3
+5
+8
+50
+51
+
+    table.count => 6
+    table.exists(5) =>true/false
+    .first  => index del primer registro
+    .last   =>  index del ultimo
+    .next(8)   => 50
+    .prior(51)  => 50
+    .delete(5)  => borra el registro con index index
+    .trim    => borra la tabla
+
+*/
+
+declare
+    type tr_emp is record(
+        emp_id employee.employee_id%type,
+        nombre employee.first_name%type,
+        apellido employee.last_name%type,
+        salario employee.salary%type
+    );
+
+    type tt_emp is table of tr_emp index by binary_integer;
+
+    t_emp tt_emp;
+    l_idx binary_integer;
+begin
+
+    t_emp(3).emp_id := 8;
+    t_emp(3).nombre := 'EXAMPLE';
+
+    t_emp(5).emp_id := 12;
+    t_emp(5).nombre := 'PEPE';
+
+    t_emp(28).emp_id := 23;
+    t_emp(28).nombre := 'gperru test';
+
+    l_idx := t_emp.first;
+
+    while l_idx <= t_emp.last loop
+        dbms_output.put_line('id: '||t_emp(l_idx).emp_id||'  nombre: '||t_emp(l_idx).nombre);
+        l_idx := t_emp.next(l_idx);
+    end loop;
+
+    dbms_output.put_line('-'||'fin'||'-');
+
+end;
 
 
 
