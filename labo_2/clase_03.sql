@@ -270,3 +270,18 @@ end;
 
 
 
+-- ej, ingresar un numero por pantalla y mostrar los POTENCIAS de 2 menores al numero ingresado
+declare
+    v_tope number(2);
+    v_multiple number(3);
+begin
+    v_tope := :ingrese_valor_maximo;
+    v_multiple := 2;
+
+    while v_multiple <= v_tope loop
+        dbms_output.put_line(v_multiple);
+        v_multiple := v_multiple * 2;
+    end loop;
+
+    dbms_output.put_line('fin');
+end;
