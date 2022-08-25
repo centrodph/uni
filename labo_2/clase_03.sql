@@ -152,3 +152,57 @@ begin
 
     dbms_output.put_line('fin');
 end;
+
+
+----------------------
+
+variables 
+    -  Escalares -> varchar2, date, number
+    -  Compuestas -> Record, collections
+
+atributo 
+    %TYPE
+        tipo de dato columna de tabla
+
+    %ROWTYPE   
+        tipo de dato que tiene el registro de tabla
+
+
+declare
+    type tr_emp is record(
+        emp_id employee.employee_id%type,
+        nombre employee.first_name%type,
+        apellido employee.last_name%type,
+        salario employee.salary%type
+    );
+
+    type tt_emp is table of tr_emp index by binary_integer;
+
+    t_emp tt_emp;
+begin
+
+    t_emp(1).emp_id := 8;
+    t_emp(1).nombre := 'EXAMPLE';
+
+    t_emp(2).emp_id := 12;
+    t_emp(2).nombre := 'PEPE';
+
+
+    for i in 1..2 loop
+        dbms_output.put_line('id: '||t_emp(i).emp_id);
+        dbms_output.put_line('nombre: '||t_emp(i).nombre);
+    end loop;
+
+    dbms_output.put_line('-'||'fin'||'-');
+
+end;
+
+
+
+
+
+
+
+
+
+
