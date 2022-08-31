@@ -126,3 +126,62 @@ end;
 
 
 
+-- provocar error propio
+declare 
+    v_nombre varchar2(5);
+begin
+    v_nombre := 'Martin';
+
+    dbms_output.put_line('nombre '||v_nombre);
+exception
+    when value_error then
+        raise_application_error(-20001, 'el nombre ingresa es demasiado largo');
+end;
+
+
+
+--- cursores
+/*
+    explicitos
+        -declarar
+           -- cursor
+           -- registro
+        -abrir
+        -recorrer
+        -cerrar
+    implicitos
+        -vienen dados
+
+
+    los cursores tiene atributos
+    %found
+    %notfound
+    %rowcount
+    %isopen
+    %isclose
+*/
+
+
+-- ej recorer cursor
+
+
+declare
+    v_nombre varchar2(10);
+    cursor c_cli is
+    select customer_id, name 
+    from customer
+    where salesperson_id = 7789;
+
+    r_cli c_cli%rowtype;
+
+begin
+    open c_cli;
+    loop
+        fetch c_cli into r_cli;
+        exit when c_cli%notfound;
+
+        dbms_output.put_line(r_cli.customer_id||' '||r_cli.name);
+
+    end loop;
+    dbms_output.put_line('work');
+end;
