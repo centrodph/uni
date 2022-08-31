@@ -180,8 +180,42 @@ begin
         fetch c_cli into r_cli;
         exit when c_cli%notfound;
 
-        dbms_output.put_line(r_cli.customer_id||' '||r_cli.name);
+        dbms_output.put_line(r_cli.customer_id||' '||r_cli.name||' rowcount: '||c_cli%rowcount);
 
     end loop;
+    close c_cli;
     dbms_output.put_line('work');
+end;
+
+
+
+declare
+
+    cursor c_cli is
+    select customer_id, name 
+    from customer
+    where salesperson_id = 7789;
+
+begin
+    for r_cli in c_cli loop
+        dbms_output.put_line(r_cli.customer_id||' '||r_cli.name||' rowcount: '||c_cli%rowcount);
+    end loop;
+    dbms_output.put_line('work');
+end;
+
+
+
+
+
+-- implicitos
+begin
+    update employee
+    set commission = 20
+    where department_id = 33;
+
+    if sql%rowcount > 0 then
+        dbms_output.put_line('se modificaron: '||sql%rowcount || ' filas');
+    else
+        dbms_output.put_line('no existen empleados en el departamento indicado');
+    end if;
 end;
