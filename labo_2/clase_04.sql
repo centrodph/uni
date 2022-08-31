@@ -68,6 +68,35 @@ exception
         dbms_output.put_line('no existe localidad indicada');
 end;
 
+-- provocar error
+declare 
+    v_dep_name department.name%type;
+    e_fk exception;
+    pragma exception_init(e_fk,-2291);
+begin
+    select name
+    into v_dep_name
+    from department
+    where department_id = 10;
+
+    dbms_output.put_line(8/0);
+
+    insert 
+    into department
+    (department_id, name, location_id)
+    values
+    (99, 'Prueba', 111);
+
+    dbms_output.put_line(v_dep_name);
+exception
+    when no_data_found then
+        dbms_output.put_line('no existe departament');
+    when e_fk then
+        dbms_output.put_line('no existe localidad indicada');
+    when others then
+            dbms_output.put_line('error inesperado');
+end;
+
 
 
 
