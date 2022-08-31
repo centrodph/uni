@@ -94,12 +94,31 @@ exception
     when e_fk then
         dbms_output.put_line('no existe localidad indicada');
     when others then
-            dbms_output.put_line('error inesperado');
+            dbms_output.put_line('error inesperado '|| sqlerrm);
+            dbms_output.put_line('error code '|| sqlcode);
 end;
 
 
 
 
+-- provocar error propio
+declare 
+    v_dep_name department.name%type;
+    e_fk exception;
+    pragma exception_init(e_fk,-2291);
+begin
+    raise_application_error(-20001, 'error propio');
+
+    dbms_output.put_line(v_dep_name);
+exception
+    when no_data_found then
+        dbms_output.put_line('no existe departament');
+    when e_fk then
+        dbms_output.put_line('no existe localidad indicada');
+    when others then
+            dbms_output.put_line('error inesperado '|| sqlerrm);
+            dbms_output.put_line('error code '|| sqlcode);
+end;
 
 
 
