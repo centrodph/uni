@@ -306,3 +306,35 @@ end;
 begin
     PR_UPDATE_ID_DEPTO(30);
 end;
+
+
+
+
+
+
+-- hacer un procdure
+-- cree depto, pasan un nombre, y opcional localidad
+-- si no tengo localidad pongo la localidad 122
+-- y id tiene que ser calculado en base al max
+
+CREATE OR REPLACE procedure "PR_ALTA_DEP"
+(pi_nombre IN VARCHAR2,
+pi_loc_id IN number default 122) 
+is
+    l_max_id department.department_id%type;
+begin
+    select max(department_id)
+    into l_max_id
+    from department;
+
+    insert into department
+    (department_id, name, location_id)
+    values
+    (l_max_id+1, pi_nombre, pi_loc_id);
+end;
+
+
+
+begin
+    PR_ALTA_DEP('tetsstst');
+end;
