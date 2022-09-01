@@ -322,8 +322,10 @@ CREATE OR REPLACE procedure "PR_ALTA_DEP"
 pi_loc_id IN number default 122) 
 is
     l_max_id department.department_id%type;
+    e_fk exception;
+    pragma exception_init(e_fk,-2291);
 begin
-    select max(department_id)
+    select nvl(max(department_id), 0)
     into l_max_id
     from department;
 
@@ -331,10 +333,14 @@ begin
     (department_id, name, location_id)
     values
     (l_max_id+1, pi_nombre, pi_loc_id);
+exception
+    when e_fk then
+        dbms_output.put_line('Localidad no encontrada');
+
 end;
 
 
 
 begin
-    PR_ALTA_DEP('tetsstst');
+    PR_ALTA_DEP('tetsstst',1);
 end;
