@@ -219,3 +219,90 @@ begin
         dbms_output.put_line('no existen empleados en el departamento indicado');
     end if;
 end;
+
+
+
+-- store procedure
+CREATE OR REPLACE PROCEDURE suma (num1 IN number, num2 IN number, v_total OUT number)
+IS
+-- declarativa
+begin
+    v_total := num1 + num2;
+
+end;
+
+
+declare 
+    v_num1 number(8) := 5;
+    v_num2 number(8) := 20;
+    v_total number(8) := 0;
+begin
+    suma(v_num1, v_num2, v_total);
+    dbms_output.put_line('total '||v_total);
+end;
+
+
+CREATE OR REPLACE PROCEDURE alCubo (num IN OUT number)
+IS
+-- declarativa
+begin
+    num := num * num;
+end;
+
+declare 
+    v_num1 number(8) := 5;
+    v_num2 number(8) := 20;
+    v_total number(8) := 0;
+begin
+    alCubo(v_num1);
+    dbms_output.put_line('total '||v_num1);
+end;
+
+
+-- validar estatus de estore procedure
+
+select status from all_objects where object_name = 'ALCUBO';
+
+
+
+
+
+create or replace procedure "INSERT_PRODUCT"
+(p_id IN product.product_id%type,
+p_nombre in product.description%type)
+is
+begin
+    insert into product values(p_id,p_nombre);
+    dbms_output.put_line('executed');
+exception
+    when dup_val_on_index then
+        dbms_output.put_line('clave duplicada '||sqlerrm);
+end;
+
+
+begin
+    insert_product(1055, 'test nuevo product');
+end;
+
+select * from product where product_id=1055;
+
+
+
+create or replace procedure "PR_UPDATE_ID_DEPTO"
+(p_id IN product.product_id%type)
+is
+begin
+    update department set name = 'FINANZAS'
+    where department_id = p_id;
+    if sql%rowcount = 0 then
+        dbms_output.put_line('no actualizo departments');
+    else
+        dbms_output.put_line('actualizo '|| sql%rowcount);
+    end if;    
+    dbms_output.put_line('executed');
+end;
+
+
+begin
+    PR_UPDATE_ID_DEPTO(30);
+end;
