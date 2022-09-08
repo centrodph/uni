@@ -106,19 +106,33 @@ create or replace
     function fun_emp_id (pi_nombre in employee.first_name%type, pi_apellido in employee.last_name%type)
     return number is
     v_id employee.employee_id%type;
+
 begin
     select employee_id
     into v_id
     from employee where upper(first_name) = upper(pi_nombre) and upper(last_name) = upper(pi_apellido);
 
     return v_id;
+exception
+    when no_data_found then
+        raise_application_error(-20001, 'empleado no encontrado');
+    when too_many_rows then
+        raise_application_error(-20002, 'mas de un empleado encontrado');        
+    when others then
+        raise_application_error(-20003, 'error inesperado '||sqlerrm);        
 
--- exceptions
---     when no_data_found then
---         dbms_output.put_line('Empleado no encontrado');    
 end;
 
 
 begin
     dbms_output.put_line(fun_emp_id('john', 'SMITH'));
+    dbms_output.put_line(fun_emp_id('Ale', 'Perez'));
+    -- dbms_output.put_line(fun_emp_id('johnds', 'SMITH'));
 end;
+
+
+
+insert into employee 
+    (employee_id, first_name, last_name, department_id)
+    values
+    (3001, 'Ale', 'Perez', 10);
