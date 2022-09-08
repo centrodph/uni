@@ -88,9 +88,37 @@ begin
     return v_prom;
 end;
 
+declare
+    v_n number;
 begin
+    select  fu_prom_sal(20) into v_n from dual;
     dbms_output.put_line(fu_prom_sal(20));
 end;
 
 select fu_prom_sal(20) from dual;
 
+
+
+
+----- funcion que reciba nombre y apellido de un empleado y devuelva el id
+
+create or replace 
+    function fun_emp_id (pi_nombre in employee.first_name%type, pi_apellido in employee.last_name%type)
+    return number is
+    v_id employee.employee_id%type;
+begin
+    select employee_id
+    into v_id
+    from employee where upper(first_name) = upper(pi_nombre) and upper(last_name) = upper(pi_apellido);
+
+    return v_id;
+
+-- exceptions
+--     when no_data_found then
+--         dbms_output.put_line('Empleado no encontrado');    
+end;
+
+
+begin
+    dbms_output.put_line(fun_emp_id('john', 'SMITH'));
+end;
