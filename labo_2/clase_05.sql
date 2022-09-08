@@ -70,3 +70,27 @@ begin
     lista_emple_por_depto();
 end;
 
+
+
+
+
+
+--- funciones, tambien queda almacenada, tambien recibe parametros PERO la funcion siempre retorna algo
+create or replace 
+    function fu_prom_sal (pi_dep_id in number)
+    return number is
+    v_prom number(8,2);
+begin
+    select avg(salary) 
+    into v_prom
+    from employee where department_id = pi_dep_id;
+
+    return v_prom;
+end;
+
+begin
+    dbms_output.put_line(fu_prom_sal(20));
+end;
+
+select fu_prom_sal(20) from dual;
+
