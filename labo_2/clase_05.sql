@@ -136,3 +136,44 @@ insert into employee
     (employee_id, first_name, last_name, department_id)
     values
     (3001, 'Ale', 'Perez', 10);
+
+
+
+--- hacer un procedimiento para dar alta empleado
+create or replace procedure pro_alta_emple 
+    (
+        pi_nom in employee.first_name%type, 
+        pi_ape in employee.last_name%type,
+        pi_dep_id in employee.department_id%type
+    ) is
+
+    l_max_id number(4);
+    l_emp_id number(4);
+    e_emp_no_existe exception;
+    pragma exception_init(e_emp_no_existe, -20001);
+
+    e_emp_duplicado exception;
+    pragma exception_init(e_emp_duplicado, -20002);
+begin
+
+    begin
+        l_emp_id := fun_emp_id(pi_nom, pi_ape);
+        dbms_output.put_line('El empleado ya existe');
+        exception
+            when e_emp_no_existe then
+                    select max(employee_id)+1
+                    into l_max_id
+                    from employee;
+                    insert into employee 
+                    (employee_id, first_name, last_name, department_id)
+                    values
+                    (l_max_id, pi_nom, pi_ape, pi_dep_id);
+            when e_emp_duplicado then
+                dbms_output.put_line('El empleado ya existe y esta duplicado');                   
+    end;
+end;
+
+begin
+    pro_alta_emple('TEst2', 'testApe', 31);
+    --pro_alta_emple('TEst', 'testApe', 10);
+end;
