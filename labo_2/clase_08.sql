@@ -1,3 +1,4 @@
+--- packages clase 8
 /*
   La finalidad es agrupar una serie de elementos
 
@@ -88,6 +89,27 @@ pragma exception_init(e_emp_noex,-20001);
 pragma exception_init(e_emp_dupl,-20002);
 pragma exception_init(e_emp_otro,-20003);
 
+
+    /**
+    crear tabla
+    **/
+    type tr_depto is record(
+        p_id_depto department.department_id%type,
+        p_name department.name%type,
+        p_count_emple number,
+        p_prom_salary number
+    );
+    type tt_dep is table of tr_depto index by binary_integer;
+    t_dep tt_dep;
+
+
+    cursor c_depto is
+        select d.department_id, d.name, count(e.employee_id), avg(e.salary)
+        from department d, employee e
+        where d.department_id = e.department_id
+        group by d.department_id, d.name;
+
+
 /***************************************************/
 function fu_emp_id(pi_nombre   employee.first_name%type,
                    pi_apellido employee.last_name%type)
@@ -118,7 +140,7 @@ begin
 
 PROCEDURE pr_modif_salario (pi_emp_id  employee.employee_id%type,
                             pi_salario employee.salary%type) 
-as
+is
 begin
    update employee
    set salary = pi_salario
@@ -161,6 +183,8 @@ exception
 /*one time only*/
 begin
   dbms_output.put_line('Primera vez');
+
+
 end ;
 
 
