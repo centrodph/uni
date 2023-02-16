@@ -13,4 +13,4 @@ pyrsistent==0.18.1
 pytz==2021.3
 six==1.16.0
 toml==0.10.2
-Werkzeug==2.0.3
+Werkzeug==2.2.3
